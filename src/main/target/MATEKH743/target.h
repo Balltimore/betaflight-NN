@@ -23,7 +23,7 @@
 #define USE_TARGET_CONFIG
 
 #define TARGET_BOARD_IDENTIFIER "M743"
-#define USBD_PRODUCT_STRING  "MATEK-H743"
+#define USBD_PRODUCT_STRING  "MATEK-MOD-H743"
 
 #define LED0_PIN                PE3  //Blue
 #define LED1_PIN                PE4  //Green
@@ -42,27 +42,27 @@
 #define USE_GYRO_EXTI
 
 #define USE_SPI_DEVICE_1
-#define GYRO_1_SPI_INSTANCE     SPI1   //MPU6000
+#define GYRO_1_SPI_INSTANCE     SPI1   //ICM42688P
 #define SPI1_SCK_PIN            PA5
 #define SPI1_MISO_PIN           PA6
 #define SPI1_MOSI_PIN           PD7
 #define GYRO_1_CS_PIN           PC15
 #define GYRO_1_EXTI_PIN         PB2
 
-#define USE_GYRO_SPI_MPU6000
-#define USE_ACC_SPI_MPU6000
+#define USE_GYRO_SPI_ICM42688P
+#define USE_ACC_SPI_ICM42688P
 #define GYRO_1_ALIGN            CW0_DEG_FLIP
 
 #define USE_SPI_DEVICE_4 
-#define GYRO_2_SPI_INSTANCE     SPI4  //ICM20602
+#define GYRO_2_SPI_INSTANCE     SPI4  //ICM42605
 #define SPI4_SCK_PIN            PE12
 #define SPI4_MISO_PIN           PE13
 #define SPI4_MOSI_PIN           PE14
 #define GYRO_2_CS_PIN           PE11
 #define GYRO_2_EXTI_PIN         PE15
 
-#define USE_GYRO_SPI_MPU6500
-#define USE_ACC_SPI_MPU6500
+#define USE_GYRO_SPI_ICM42605
+#define USE_ACC_SPI_ICM42605
 #define GYRO_2_ALIGN            CW0_DEG_FLIP
 
 #define USE_MPU_DATA_READY_SIGNAL
@@ -71,6 +71,9 @@
 
 // *************** SPI2 OSD ***********************
 
+// Disable unused OSD chip
+
+/*
 #define USE_SPI_DEVICE_2
 #define SPI2_SCK_PIN            PB13
 #define SPI2_MISO_PIN           PB14
@@ -79,6 +82,7 @@
 #define USE_MAX7456
 #define MAX7456_SPI_INSTANCE    SPI2
 #define MAX7456_SPI_CS_PIN      PB12
+*/
 
 // *************** SPI3 ***************************
 
@@ -92,6 +96,8 @@
 
 #define USE_I2C
 
+// Disable non existing Magnetometer
+/*
 #define USE_I2C_DEVICE_1
 #define I2C_DEVICE_1            (I2CDEV_1)
 #define I2C1_SCL                PB6
@@ -102,6 +108,7 @@
 #define USE_MAG_HMC5883
 #define USE_MAG_QMC5883
 #define USE_MAG_LIS3MDL
+*/
 
 #define USE_I2C_DEVICE_2
 #define I2C_DEVICE_2            (I2CDEV_2)
@@ -110,9 +117,7 @@
 
 #define BARO_I2C_INSTANCE       (I2CDEV_2)
 #define USE_BARO
-#define DEFAULT_BARO_MS5611
-#define USE_BARO_MS5611
-#define USE_BARO_BMP280
+#define DEFAULT_BARO_DPS310
 #define USE_BARO_DPS310
 
 // *************** UART *****************************
@@ -193,7 +198,7 @@
 #define DEFAULT_VOLTAGE_METER_SOURCE VOLTAGE_METER_ADC
 #define VBAT_SCALE_DEFAULT            110
 #define DEFAULT_CURRENT_METER_SOURCE CURRENT_METER_ADC
-#define CURRENT_METER_SCALE_DEFAULT   250
+#define CURRENT_METER_SCALE_DEFAULT   152 // Value provided by ESC manufacturer
 
 // *************** PINIO ***************************
 
@@ -204,7 +209,7 @@
 
 // *************** Others ***************************
 
-#define DEFAULT_FEATURES        (FEATURE_OSD | FEATURE_TELEMETRY )
+#define DEFAULT_FEATURES        (FEATURE_TELEMETRY )
 
 //#define ENABLE_DSHOT_DMAR       DSHOT_DMAR_ON
 
@@ -219,4 +224,59 @@
 #define TARGET_IO_PORTG 0xffff
 
 #define USABLE_TIMER_CHANNEL_COUNT 18
-#define USED_TIMERS    (TIM_N(1)|TIM_N(2)|TIM_N(3)|TIM_N(4)|TIM_N(5)|TIM_N(8)|TIM_N(15)|TIM_N(16)|TIM_N(17))
+#define USED_TIMERS    (TIM_N(2)|TIM_N(3)|TIM_N(4)|TIM_N(5)|TIM_N(8)|TIM_N(16)|TIM_N(17))
+
+// *************** Custom ***************************
+
+// Disable unused RX protocols
+#undef USE_PPM
+#undef USE_SERIALRX_CRSF  
+#undef USE_SERIALRX_GHST  
+#undef USE_SERIALRX_SBUS
+#undef USE_SERIALRX_SPEKTRUM 
+#undef USE_SERIALRX_SUMD
+#undef USE_SERIALRX_FPORT
+#undef USE_SERIALRX_SUMH
+#undef USE_SERIALRX_XBUS
+#undef USE_SERIALRX_SRXL2
+
+// Disable unused features of disabled RX protocols
+#undef USE_TELEMETRY_CRSF
+#undef USE_TELEMETRY_GHST
+#undef USE_TELEMETRY_SRXL
+#undef USE_SPEKTRUM_BIND
+#undef USE_SPEKTRUM_BIND_PLUG
+#undef USE_SPEKTRUM_REAL_RSSI
+#undef USE_SPEKTRUM_FAKE_RSSI
+#undef USE_SPEKTRUM_RSSI_PERCENT_CONVERSION
+#undef USE_SPEKTRUM_VTX_CONTROL
+#undef USE_SPEKTRUM_VTX_TELEMETRY
+#undef USE_SPEKTRUM_CMS_TELEMETRY
+#undef USE_CRSF_CMS_TELEMETRY
+#undef USE_CRSF_LINK_STATISTICS
+
+// Disable unused VTX
+#undef USE_VTX_COMMON
+#undef USE_VTX_CONTROL
+#undef USE_VTX_SMARTAUDIO
+#undef USE_VTX_TRAMP
+#undef USE_CAMERA_CONTROL
+#undef USE_VTX_TABLE
+
+// Disable unsued GPS 
+#undef USE_GPS
+#undef USE_GPS_NMEA
+#undef USE_GPS_UBLOX
+#undef USE_GPS_RESCUE
+#undef USE_CMS_GPS_RESCUE_MENU
+
+// Disable unused OSD
+#undef USE_OSD
+#undef USE_OSD_OVER_MSP_DISPLAYPORT
+#undef USE_OSD_PROFILES
+#undef USE_OSD_STICK_OVERLAY
+
+
+// Disable unused features
+#undef USE_SERVOS
+#undef USE_LED_STRIP

@@ -42,13 +42,16 @@ const timerHardware_t timerHardware[USABLE_TIMER_CHANNEL_COUNT] = {
     DEF_TIM(TIM4,  CH3, PD14, TIM_USE_MOTOR, 0, 12, 1),  // S9
     DEF_TIM(TIM4,  CH4, PD15, TIM_USE_MOTOR, 0, 0, 1),   // S10  No DMA
 
-    DEF_TIM(TIM15, CH1, PE5,  TIM_USE_SERVO, 0, 0, 0),   // S11
-    DEF_TIM(TIM15, CH2, PE6,  TIM_USE_SERVO, 0, 0, 0),   // S12
+    // Disable timers for not used servos
+    //DEF_TIM(TIM15, CH1, PE5,  TIM_USE_SERVO, 0, 0, 0),   // S11
+    //DEF_TIM(TIM15, CH2, PE6,  TIM_USE_SERVO, 0, 0, 0),   // S12
 
-    DEF_TIM(TIM1,  CH1, PA8,  TIM_USE_LED, 0, 14, 0),    // LED_2812
+    // Disable timers for not used LED Strip
+    //DEF_TIM(TIM1,  CH1, PA8,  TIM_USE_LED, 0, 14, 0),    // LED_2812
     DEF_TIM(TIM2,  CH1, PA15, TIM_USE_BEEPER, 0, 0, 0),  // BEEPER PWM
 
-    DEF_TIM(TIM8,  CH2, PC7,  TIM_USE_PPM, 0, 0, 0),   // RX6 PPM
+    // Disable timers for not used PPM RX protocol
+    // DEF_TIM(TIM8,  CH2, PC7,  TIM_USE_PPM, 0, 0, 0),   // RX6 PPM
     DEF_TIM(TIM8,  CH1, PC6,  TIM_USE_ANY, 0, 0, 0),   // TX6    
     DEF_TIM(TIM16, CH1, PB8,  TIM_USE_ANY, 0, 0, 0),   // RX4
     DEF_TIM(TIM17, CH1, PB9,  TIM_USE_ANY, 0, 0, 0),   // TX4

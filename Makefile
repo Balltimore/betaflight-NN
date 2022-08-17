@@ -16,7 +16,7 @@
 #
 
 # The target to build, see VALID_TARGETS below
-TARGET    ?= STM32F405
+TARGET    ?= MATEKH743
 
 # Compile-time options
 OPTIONS   ?=
@@ -56,7 +56,7 @@ RELEASE ?= no
 # Things that need to be maintained as the source changes
 #
 
-FORKNAME      = betaflight
+FORKNAME      = betaflight-NN
 
 # Working directories
 ROOT            := $(patsubst %/,%,$(dir $(lastword $(MAKEFILE_LIST))))
